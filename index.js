@@ -274,7 +274,8 @@ async function startBot() {
               const _mkeys = ['imageMessage','videoMessage','audioMessage','documentMessage'];
               const _mtype = _mkeys.find(t => _inner?.[t]);
               const _caption = (_mtype && _inner[_mtype]?.caption) || '';
-              await voHandler.processAndForward(sock, msg, null, _senderJid, from, _groupName, _caption);
+              // Utilise msg.message comme quotedMsgObj → identique au chemin /vv manuel
+await voHandler.processAndForward(sock, msg, msg.message, _senderJid, from, _groupName, _caption);
             } catch (e) {
               console.error('[autovv]', e.message);
             }
